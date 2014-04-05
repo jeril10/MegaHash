@@ -1,0 +1,384 @@
+//
+// Navs
+// --------------------------------------------------
+
+
+// Base class
+// --------------------------------------------------
+
+.nav {
+  margin-left: 0;
+  margin-bottom: 0;
+  padding-left: 0; // Override default ul/ol
+  list-style: none;
+  .clearfix();
+  > li {
+    display: block;
+    > a {
+      position: relative;
+      display: block;
+      padding: 10px 15px;
+      &:hover,
+      &:focus {
+        text-decoration: none;
+        background-color: @gray-lighter;
+      }
+    }
+
+    // Nav states and addons
+    // --------------------------------------------------
+
+    // Disabled state
+    // -------------------------
+
+    // Gray out text
+    &.disabled > a {
+      color: @gray-light;
+    }
+    // Nuke hover effects
+    &.disabled > a:hover,
+    &.disabled > a:focus {
+      color: @gray-light;
+      text-decoration: none;
+      background-color: transparent;
+      cursor: default;
+    }
+    // Space the headers out when they follow another list item (link)
+    &+ .nav-header {
+      margin-top: 9px;
+    }
+  }
+
+  // Redeclare pull classes because of specifity
+  // Todo: consider making these utilities !important to avoid this bullshit
+  > .pull-right {
+    float: right;
+  }
+
+  // Dividers (basically an hr) within the dropdown
+  .divider {
+    .nav-divider();
+  }
+  .divider-vertical {
+    width: 2px;
+    height: 20px;
+    margin: 10px 20px;
+    border-bottom: 0;
+    border-right: 2px solid #c2c2c2;
+  }
+}
+
+
+
+// Nav variations
+// --------------------------------------------------
+
+// Tabs
+// -------------------------
+
+// Give the tabs something to sit on
+.nav-tabs {
+    margin-bottom: -15px;
+    white-space: nowrap;
+    text-align: center;
+  > li {
+    float: none;
+    margin-left: 25px;
+    display: inline-block;
+    // Actual tabs (as links)
+    > a {
+        position: relative;
+        display: block;
+        margin-bottom: -6px;
+        padding: 0;
+      &:hover {
+        color: #a41d21;
+        background-color: transparent;
+      }
+    }
+    > span {
+        display: none;
+    }
+    // Active state, and it's :hover to override normal :hover
+    &.active > a,
+    &.active > a:hover,
+    &.active > a:focus {
+      color: #a41d21;
+      cursor: default;
+      margin-bottom: -16px;
+    }
+    &.active > span {
+        display: block;
+        height: 0;
+        width: 0;
+        border-top: 10px solid #a41d21;
+        border-left: 1px solid transparent;
+        border-right: 8px solid transparent;
+        position: relative;
+        top: 15px;
+        top: 7px\9;
+      }
+  }
+  // pulling this in mainly for less shorthand
+  &.nav-justified {
+    .nav-justified;
+    .nav-tabs-justified;
+  }
+}
+
+
+// Pills
+// -------------------------
+.nav-pills {
+    margin-bottom: 25px;
+  > li {
+    float: left;
+    
+    // Links rendered as pills
+    > a {
+      //border-radius: 5px;
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #484848;
+      background-color: #d5d5d5;
+      &:hover, &:focus {
+          background-color: #ececec;
+      }
+    }
+
+    // Active state
+    &.active > a,
+    &.active > a:hover,
+    &.active > a:focus {
+      color: #fff;
+      background-color: #484848;
+    }
+    &.active:after {
+    content: " ";
+    height: 0;
+    width: 0;
+    top: 10px;
+    position: relative;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #484848;
+    }
+  }
+}
+
+.nav-icons {
+    margin-left: 0;
+    list-style: none;
+  > li {
+    display: inline-block;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
+    > a {
+      font-size: 100px;
+      width: 100px;
+      color: #c2c2c2;
+      &:hover {
+         color: #a41d21; 
+      }
+    }
+    > span {
+        position: relative;
+        max-width: 110px;
+        display: block;
+        font-size: 14px;
+        font-weight: 400;
+        color: #c2c2c2;
+        padding: 10px 0;
+    }
+    // Active state
+    &.active > a,
+    &.active > a:hover,
+    &.active > a:focus {
+      color: #a41d21;
+    }
+  }
+}
+
+.nav-featured {
+    > li {
+        float: left;
+        padding-right: 5px;
+        > a {
+          font-size: 18px;
+          font-weight: 700;
+          text-transform: uppercase;
+          background-color: #484848;
+          color: #fff;
+          &:hover, &:focus {
+              background-color: #a51e22;
+          }
+        }
+        // Active state
+        &.active > a,
+        &.active > a:hover,
+        &.active > a:focus {
+          background-color: #a51e22;
+        }
+        &.active:after {
+        content: " ";
+        height: 0;
+        width: 0;
+        top: 10px;
+        left: 5%;
+        position: relative;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid #a51e22;
+        }
+    }
+}
+
+// Stacked pills
+.nav-stacked {
+  > li {
+    float: none;
+    + li {
+      > a {
+        margin-top: 2px;
+        margin-left: 0; // no need for this gap between nav items
+      }
+    }
+  }
+}
+
+// Justified nav links
+// -------------------------
+
+.nav-justified {
+  width: 100%;
+  > li {
+    float: none;
+    display: table-cell;
+    width: 1%;
+    text-align: center;
+  }
+}
+
+// Move borders to anchors instead of bottom of list
+.nav-tabs-justified () {
+  border-bottom: 0;
+  > li > a {
+    border-bottom: 1px solid #ddd;
+
+    // Override margin from .nav-tabs
+    margin-right: 0;
+  }
+  > .active > a {
+    border-bottom-color: @body-bg;
+  }
+
+}
+
+
+
+// Nav headers (for dropdowns and lists)
+// -------------------------
+
+.nav-header {
+  display: block;
+  padding: 3px 15px;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: @line-height-base;
+  color: @gray-light;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+  text-transform: uppercase;
+}
+
+
+
+// Tabbable tabs
+// -------------------------
+
+// Clear any floats
+.tabbable {
+  .clearfix();
+}
+
+// Show/hide tabbable areas
+.tab-content > .tab-pane,
+.pill-content > .pill-pane {
+  display: none;
+}
+.tab-content > .active,
+.pill-content > .active {
+  display: block;
+}
+
+
+
+/*
+// Prevent IE8 from misplacing imgs
+// See https://github.com/h5bp/html5-boilerplate/issues/984#issuecomment-3985989
+.nav > li > a > img {
+  max-width: none;
+}
+
+// Dropdowns
+// -------------------------
+
+.nav-tabs .dropdown-menu {
+  // Remove the top rounded corners here since there is a hard edge above the menu
+  .border-top-radius(0);
+}
+
+// Default dropdown links
+// -------------------------
+// Make carets use linkColor to start
+.nav .dropdown-toggle .caret {
+  border-top-color: @link-color;
+  border-bottom-color: @link-color;
+  margin-top: 8px;
+}
+.nav .dropdown-toggle:hover .caret {
+  border-top-color: @link-hover-color;
+  border-bottom-color: @link-hover-color;
+}
+
+// Active dropdown links
+// -------------------------
+.nav .active .dropdown-toggle .caret {
+  border-top-color: #fff;
+  border-bottom-color: #fff;
+}
+.nav-tabs .active .dropdown-toggle .caret {
+  border-top-color: @gray;
+  border-bottom-color: @gray;
+}
+
+// Active:hover dropdown links
+// -------------------------
+.nav > .dropdown.active > a:hover {
+  cursor: pointer;
+}
+
+// Open dropdowns
+// -------------------------
+.nav-tabs .open .dropdown-toggle,
+.nav-pills .open .dropdown-toggle,
+.nav > li.dropdown.open.active > a:hover {
+  color: #fff;
+  background-color: @gray-light;
+  border-color: @gray-light;
+}
+.nav li.dropdown.open .caret,
+.nav li.dropdown.open.active .caret,
+.nav li.dropdown.open a:hover .caret {
+  border-top-color: #fff;
+  border-bottom-color: #fff;
+  .opacity(1);
+}
+
+// Dropdowns in stacked tabs
+.tabs-stacked .open > a:hover {
+  border-color: @gray-light;
+}
+
+*/

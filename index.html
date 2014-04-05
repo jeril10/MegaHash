@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Pirate3D</title>
+    <link href="css/megahash.css" rel="stylesheet" />
+    <link href="css/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="container"> 
+		<div class="row">  
+		<br/> <br/><br/>
+		    <div class="col col-lg-8 col-offset-2">   
+			    <div data-bind="foreach: taskList">
+			       	<div data-bind="progressBind: Progress, visible: IsComputing" class="progressbar"></div>
+			        <div class="panel panel-compute">
+			        	<div class="close-button">
+			            	<a href="javascript:void(0)" class="pull-right" data-bind="click: $root.removeTask"><b>x</b></a>
+			            </div>
+			            <div class="col col-lg-7">
+				            <div class>FileName : <span data-bind="text: TaskName"></span></div>
+				            <div class="newline">
+					            <b>MegaHash : </b> <span data-bind="text: MegaHash"></span>
+					            <a href="javascript:void(0)" data-bind="click: cancelCompute, visible: IsComputing">&nbsp;Cancel</a> 
+					        </div> 
+			            </div>
+			            <div class="col col-lg-4 iterationInput">
+			            	<span>Iterations : </span>
+			            	<input type=number min=0 max=1000 step=1 data-bind="value: Iteration"/>
+			            </div>			            
+			        </div>
+			    </div>
+			    <br /><br />
+			    <div class="text-center">
+			        <div class="fileinput-button btn btn-primary">
+			        	<span class="ui-icon ui-icon-plusthick pull-left"></span><span>&nbsp;Add a file to MegaHash</span>
+						<input type="file" id="file1" multiple="false">
+					</div>
+			    </div>
+		   </div> 
+	   </div>
+   </div>
+</body>
+</html>
+
+<script src="js/jquery-2.0.3.js"></script>
+<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="js/knockout-3.0.0.js"></script>
+<script type="text/javascript">
+
+var Task = function (fileName, result) {
+    var self = this;
+    self.TaskName = fileName;
+    self.fileContent = result;
+    self.MegaHash = ko.observable('Computing..');
+    self.Iteration = ko.observable(0);
+    self.Progress = ko.observable(0);
+    self.IsComputing = ko.observable(true);
+    self.worker =  null;
+    self.startCompute  = function () {
+    	self.IsComputing(true);
+		self.worker = new Worker("megaHash.js");
+		self.worker.onmessage = function (oEvent) {
+			if(oEvent.data.type == 1) {
+				self.Progress(100);
+				self.MegaHash(oEvent.data.value);
+    			self.IsComputing(false);
+			}
+		};
+        self.worker.postMessage({input: self.fileContent, n : 0});
+    	}
+    self.cancelCompute  = function () {
+		self.worker.terminate();
+		self.Progress(0);
+		self.MegaHash('Cancelled');
+    	self.IsComputing(false);
+    	}
+    self.Iteration.subscribe(function () {
+    	self.IsComputing(true);
+		self.Progress(0);
+		self.MegaHash('Computing..');
+		self.worker.terminate();
+		self.worker = new Worker("megaHash.js");
+		self.worker.onmessage = function (oEvent) {
+			if(oEvent.data.type == 2) {
+				self.Progress(Math.floor(oEvent.data.value/self.Iteration() * 100));
+			}
+			if(oEvent.data.type == 1) {
+				self.MegaHash(oEvent.data.value);
+    			self.IsComputing(false);
+			}
+		};
+        self.worker.postMessage({input: self.fileContent, n : self.Iteration()});
+    	});
+    }
+
+var tasksModel = function() {
+	var self = this;
+    self.taskList = ko.observableArray([]);
+    self.addTask = function (name, result) {
+    	var task = new Task(name, result);
+        self.taskList.push(task);
+        task.startCompute();
+    }
+    self.removeTask = function (task) {
+		task.worker.terminate();
+        self.taskList.remove(task);
+    }
+}
+ko.bindingHandlers.progressBind = {
+    init: function(element, valueAccessor) {
+        $(element).progressbar({
+            value: valueAccessor()()
+        });
+    },
+    update: function (element, valueAccessor) {
+        $(element).progressbar("value", valueAccessor()());
+    }
+};
+var tasksViewModel = new tasksModel();
+ko.applyBindings(tasksViewModel);
+
+$("#file1").change(function () {
+    var file = this.files.item(0);
+    handleFile(file);
+});
+
+function handleFile(file) {
+        var reader = new FileReader();
+        reader.onload = function() {
+    	tasksViewModel.addTask(file.name, reader.result);
+        };
+        reader.onerror = function() {
+            console.error("Could not read the file");
+        };
+        reader.readAsBinaryString(file);
+ }
+</script>

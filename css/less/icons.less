@@ -1,0 +1,471 @@
+// Import the fonts
+@font-face {
+  font-family: 'huntshire';
+  src: url('@{icons-font-path}/huntshire.eot?01112013');
+  src: url('@{icons-font-path}/huntshire.eot?01112013#iefix') format('embedded-opentype'),
+       url('@{icons-font-path}/huntshire.woff?01112013') format('woff'),
+       url('@{icons-font-path}/huntshire.ttf?01112013') format('truetype'),
+       url('@{icons-font-path}/huntshire.svg?01112013#huntshire') format('svg');
+}
+
+// Catchall baseclass
+.icon {
+    font-family: 'huntshire', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+}
+.icon-heading {
+    font-size: 100px;
+    color: #c2c2c2;
+}
+.icon-about {
+    font-size:50px; 
+    color:#7c7c7c;
+    &:before {
+        content: "\e000";
+    }
+    &:hover,
+    &:focus { 
+        color:#a41d21;
+    }
+}
+.icon-addjob:before {
+    content: "\e001";
+}
+.icon-assessment:before {
+    content: "\e002";
+}
+.icon-assignment:before {
+    content: "\e003";
+}
+.icon-benefits {
+    font-size:50px; 
+    color:#7c7c7c;
+    &:before {
+        content: "\e004";
+    }
+    &:hover,
+    &:focus { 
+        color:#a41d21;
+    }
+}
+.icon-beverages:before {
+    content: "\e005";
+}
+.icon-blog {
+    font-size:40px; 
+    color:#cccccc;
+    &:before {
+        content: "\e006";
+    }
+    &:hover,
+    &:focus { 
+        color:#111111;
+    }
+}
+.icon-calendar {
+    font-size: 20px; 
+    color: #484848;
+    &:before {
+        content: "\e007";
+    }
+}
+.icon-campus:before {
+    content: "\e008";
+}
+.icon-comments {
+    font-size: 25px; 
+    color: #484848;
+    &:before {
+        content: "\e009";
+    }
+}
+.icon-companies:before {
+    content: "\e00a";
+}
+.icon-cross:before {
+    content: "\e00b";
+}
+.icon-csr:before {
+    content: "\e00c";
+}
+.icon-dashboard:before {
+    content: "\e00d";
+}
+.icon-detailed-report {
+    font-size: 25px; 
+    color: #484848;
+    &:before {
+    content: "\e00e";
+    }
+}
+.icon-down:before {
+    content: "\e00f";
+}
+.icon-downloadresume {
+    font-size: 25px; 
+    color: #484848;
+    &:before {
+        content: "\e010";
+    }
+}
+.icon-edit {
+    color:#cccccc;
+    font-size: 40px;
+    &:before {
+        content: "\e011";
+    }
+    &:hover {
+        color:#484848;
+    }
+}
+.icon-exportexcel {
+    font-size: 20px;
+    color: #484848;
+    &:before {
+        content: "\e012";
+    }
+}
+.icon-facebook {
+    font-size:40px; 
+    color:#cccccc;
+    &:before {
+        content: "\e013";
+    }
+    &:hover,
+    &:focus {
+        color:#3b5998;
+    }
+}
+.icon-facetoface:before {
+    content: "\e014";
+}
+.icon-flexible:before {
+	content: "\e015";
+}
+.icon-font:before {
+    content: "\e016";
+}
+.icon-food:before {
+    content: "\e017";
+}
+.icon-gd:before {
+	content: "\e018";
+}
+.icon-grouptask:before {
+    content: "\e019";
+}
+.icon-gym:before {
+	content: "\e01a";
+}
+.icon-hr:before {
+    content: "\e01b";
+}
+.icon-hunts:before {
+    content: "\e01c";
+}
+.icon-indent-left:before {
+    content: "\e01d";
+}
+.icon-indent-right:before {
+    content: "\e01e";
+}
+.icon-informal:before {
+    content: "\e01f";
+}
+.icon-insurance:before {
+    content: "\e020";
+}
+.icon-jobs:before {
+    content: "\e021";
+}
+.icon-kudos {
+    font-size:20px;
+    &:before {
+        content: "\e022";
+    }
+}
+.icon-laptop:before {
+    content: "\e023";
+}
+.icon-lateral:before {
+    content: "\e024";
+}
+.icon-left:before {
+    content: "\e025";
+}
+.icon-linkedin {
+    font-size:40px; 
+    color:#cccccc;
+    &:before {
+        content: "\e026";
+    }
+    &:hover,
+    &:focus {
+        color:#0073b2;
+    }
+}
+.icon-list:before {
+    content: "\e027";
+}
+.icon-liveprojects {
+    &:before {
+        content: "\e028";
+    }
+}
+.icon-location {
+    &:before {
+        content: "\e029";
+    }
+}
+.icon-login:before {
+    content: "\e02a";
+}
+.icon-maternity:before {
+	content: "\e02b";
+}
+.icon-medical:before {
+    content: "\e02c";
+}
+.icon-message {
+    font-size: 25px; 
+    color: #484848;
+    &:before {
+        content: "\e02d";
+    }
+}
+.icon-milestones {
+    font-size:50px; 
+    color:#7c7c7c;
+    &:before {
+        content: "\e02e";
+    }
+    &:hover,
+    &:focus { 
+        color:#a41d21;
+    }
+}
+.icon-mission:before {
+    content: "\e02f";
+}
+.icon-notifications:before {
+    content: "\e030";
+}
+.icon-onsite:before {
+	content: "\e031";
+}
+.icon-openings {
+    font-size:50px; 
+    color:#7c7c7c;
+    &:before {
+        content: "\e032";
+    }
+    &:hover,
+    &:focus { 
+        color:#a41d21;
+    }
+}
+.icon-parking:before {
+    content: "\e033";
+}
+.icon-pencil:before {
+    content: "\e034";
+}
+.icon-people {
+    font-size:50px; 
+    color:#7c7c7c;
+    &:before {
+        content: "\e035";
+    }
+    &:hover,
+    &:focus { 
+        color:#a41d21;
+    }
+}
+.icon-phone:before {
+    content: "\e036";
+}
+.icon-picture:before {
+	content: "\e037";
+}
+.icon-plus:before {
+    content: "\e038";
+}
+.icon-print {
+    font-size: 40px; 
+    color: #484848;
+    &:before {
+        content: "\e039";
+    }
+}
+.icon-process {
+    font-size:50px; 
+    color:#7c7c7c;
+    &:before {
+        content: "\e03a";
+    }
+    &:hover,
+    &:focus { 
+        color:#a41d21;
+    }
+}
+.icon-profile:before {
+    content: "\e03b";
+}
+.icon-recreation:before {
+    content: "\e03c";
+}
+.icon-recruiter-login:before {
+    content: "\e03d";
+}
+.icon-refer:before {
+    content: "\e03e";
+}
+.icon-report {
+    &:before {
+        content: "\e03f";
+    }
+}
+.icon-reset:before {
+    content: "\e040";
+}
+.icon-right:before {
+    content: "\e041";
+}
+.icon-search:before {
+    content: "\e042";
+}
+.icon-settings:before {
+    content: "\e043";
+}
+.icon-share:before {
+	content: "\e044";
+}
+.icon-sharefb {
+    color: #ffffff;
+    font-size: 25px;
+    &:before {
+        content: "\e045";
+    }
+    &:hover {
+        color: #3b5998;
+    }
+}
+.icon-sharelnk {
+    color: #ffffff;
+    font-size: 25px;
+    &:before {
+	    content: "\e046";
+    }
+    &:hover {
+        color: #0073b2;
+    }
+}
+.icon-sharemail:before {
+    content: "\e047";
+}
+.icon-sharetw {
+    color: #ffffff;
+    font-size: 25px;
+    &:before {
+	    content: "\e048";
+    }
+    &:hover {
+        color: #00aced;
+    }
+}
+.icon-star {
+    &:before {
+        content: "\e049";
+    }
+}
+.icon-stock:before {
+    content: "\e04a";
+}
+.icon-technical:before {
+    content: "\e04b";
+}
+.icon-telephonic:before {
+	content: "\e04c";
+}
+.icon-th-list:before {
+    content: "\e04d";
+}
+.icon-tick:before {
+    content: "\e04e";
+}
+.icon-time {
+    font-size: 20px; 
+    color: #484848;
+    &:before {
+        content: "\e04f";
+    }
+}
+.icon-transportation:before {
+    content: "\e050";
+}
+.icon-twitter {
+    font-size:40px; 
+    color:#cccccc;
+    &:before {
+        content: "\e051";
+    }
+    &:hover,
+    &:focus {
+        color:#00aced;
+    }
+}
+.icon-up:before {
+	content: "\e052";
+}
+.icon-vacation:before {
+    content: "\e053";
+}
+.icon-values {
+    font-size:50px; 
+    color:#7c7c7c;
+    &:before {
+        content: "\e054";
+    }
+    &:hover,
+    &:focus { 
+        color:#a41d21;
+    }
+}
+.icon-views:before {
+    content: "\e055";
+}
+.icon-vision:before {
+    content: "\e056";
+}
+.icon-website {
+    font-size:40px; 
+    color:#cccccc;
+    &:before {
+        content: "\e057";
+    }
+    &:hover,
+    &:focus {
+        color:#111111;
+    }
+}
+.icon-youtube {
+    font-size:40px; 
+    color:#cccccc;
+    &:before {
+        content: "\e058";
+    }
+    &:hover,
+    &:focus {
+        color:#c02f2a;
+    }
+}

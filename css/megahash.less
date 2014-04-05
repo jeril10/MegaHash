@@ -1,0 +1,92 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,600,700);
+@import "less/bootstrap.less";
+
+.fileinput-button
+{
+    position: relative;
+    overflow: hidden;
+
+    input
+    {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        transform: translate(-300px, 0) scale(4);
+        font-size: 23px;
+        direction: ltr;
+        cursor: pointer;
+    }
+
+    .ui-icon
+    {
+    	margin-top: 2px;
+    }
+}
+
+.progressbar
+{
+	background:  rgb(221, 221, 221) !important;
+	margin: 0px 25px 0px 25px;
+	height: 5px !important;
+	border: none !important;
+	border-radius: 0px !important;
+
+	> div
+	{
+		background: blue !important;
+		border: none !important;
+		border-radius: 0px !important;
+		margin: 0px !important;
+	}
+}
+
+a
+{
+	color: #4169E1 !important;
+	text-decoration: none !important;
+
+	:hover
+	{
+	text-decoration: none !important;
+	}
+}
+
+.newline
+{
+	margin-top: 5px;
+}
+
+.iterationInput
+{
+	position: relative;
+	min-height: 40px;
+	span
+	{
+		position:absolute;
+		left: 15%;
+		top: 35%;
+	}
+
+	input
+	{
+		position:absolute;
+		left: 50%;
+		top: 18%;
+		min-width: 40px;
+		width: 30%;
+	}
+}
+
+.panel-compute
+{
+	overflow: auto;
+	background-color: #f7f7f7;
+}
+
+.close-button
+{
+    margin-top: -5px;
+}
